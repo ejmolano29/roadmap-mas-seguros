@@ -781,6 +781,28 @@
     <script>
 
 
+        // Datos Globales
+        let initiatives = [];
+
+        // Configuración de visualización
+        const CONFIG = {
+            weekWidth: 40, // px por semana
+            totalWeeksToRender: 60,
+            startDate: new Date('2026-02-15T00:00:00')
+        };
+
+        // Elementos DOM
+        const elSidebar = document.getElementById('sidebarContent');
+        const elHeader = document.getElementById('timelineHeader');
+        const elBody = document.getElementById('timelineBody');
+        const elBgGrid = document.getElementById('bgGrid');
+        const elTotalCost = document.getElementById('totalCostDisplay');
+        const elTableBody = document.getElementById('detailsTableBody');
+        const elDateInput = document.getElementById('projectStartDate');
+
+        // Variables para Drag & Drop de filas (reordenar)
+        let dragSrcEl = null;
+
         // Inicialización
         async function init() {
             // Configurar Listeners
