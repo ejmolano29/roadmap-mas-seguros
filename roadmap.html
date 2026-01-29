@@ -693,9 +693,22 @@
         const SUPABASE_URL = 'https://psqyleotntcdvuamkjnz.supabase.co';
         // Key proporcionada por el usuario
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcXlsZW90bnRjZHZ1YW1ram56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTc0NTUsImV4cCI6MjA4NTI5MzQ1NX0.OEkArT_kVKB936objXhto0d6Ly_134YiZS_S6MRjufA';
-        
-        const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-        const DB_ROW_ID = 1; // Usamos una sola fila para el estado global de este roadmap
+
+        let supabase = null;
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                console.log("Supabase cliente inicializado");
+            } else {
+                console.error("Librería Supabase no cargada");
+                alert("Error: La librería de Supabase no se pudo cargar. Revisa tu conexión a internet.");
+            }
+        } catch (e) {
+            console.error("Error inicializando Supabase:", e);
+            alert("Error inicializando Supabase: " + e.message);
+        }
+
+        const DB_ROW_ID = 1;
 
         // Datos Iniciales Proporcionados (Fallback)
         let initiatives = [
@@ -744,8 +757,8 @@
         // Configuración de visualización
         const CONFIG = {
             weekWidth: 40, // px por semana
-            totalWeeksToRender: 60, 
-            startDate: new Date('2026-02-15T00:00:00') 
+            totalWeeksToRender: 60,
+            startDate: new Date('2026-02-15T00:00:00')
         };
 
         // Elementos DOM
@@ -788,7 +801,8 @@
                     .single();
 
                 if (error) {
-                    console.warn("No se pudo cargar config remota (posiblemente tablas no creadas):", error.message);
+                    console.warn("Error Supabase:", error);
+                    alert("Error cargando roadmap de Supabase: " + error.message + " (" + error.code + ")");
                     return;
                 }
 
@@ -801,16 +815,20 @@
                         CONFIG.startDate = new Date(data.content.startDate);
                         updateDateInputFromConfig();
                     }
-                    console.log("Estado cargado desde Supabase");
+                    console.log("Estado cargado desde Supabase:", data.content);
+                } else {
+                    console.log("Supabase devolvió datos vacíos o sin contenido");
+                    alert("Conectado a Supabase pero no se encontraron datos válidos en la fila ID=1.");
                 }
             } catch (err) {
                 console.error("Error loading state:", err);
+                alert("Error crítico cargando estado: " + err.message);
             }
         }
 
         async function saveRoadmapState() {
             if (!supabase) return;
-            
+
             const stateToSave = {
                 initiatives: initiatives,
                 startDate: CONFIG.startDate.toISOString()
@@ -819,12 +837,12 @@
             try {
                 const { error } = await supabase
                     .from('roadmap_config')
-                    .upsert({ 
-                        id: DB_ROW_ID, 
-                        content: stateToSave, 
-                        updated_at: new Date() 
+                    .upsert({
+                        id: DB_ROW_ID,
+                        content: stateToSave,
+                        updated_at: new Date()
                     });
-                
+
                 if (error) throw error;
                 console.log("Estado guardado en Supabase");
             } catch (err) {
@@ -843,7 +861,7 @@
         function handleDateChange(renderOnly = false) {
             // Actualizar fecha en config desde el input
             const inputVal = elDateInput.value;
-            if(inputVal) {
+            if (inputVal) {
                 const parts = inputVal.split('-');
                 CONFIG.startDate = new Date(parts[0], parts[1] - 1, parts[2]);
             }
@@ -864,7 +882,7 @@
 
             const monthsRow = document.createElement('div');
             monthsRow.className = 'months-row';
-            
+
             const weeksRow = document.createElement('div');
             weeksRow.className = 'weeks-row';
 
@@ -874,7 +892,7 @@
             for (let i = 0; i < CONFIG.totalWeeksToRender; i++) {
                 const weekDate = new Date(CONFIG.startDate);
                 weekDate.setDate(weekDate.getDate() + (i * 7));
-                
+
                 const monthName = weekDate.toLocaleString('es-ES', { month: 'short' }).toUpperCase();
                 const yearShort = weekDate.getFullYear().toString().substr(-2);
                 const fullLabel = `${monthName} ${yearShort}`;
@@ -940,7 +958,7 @@
                         <span>${project.totalWeeks} semanas | $${project.cost.toLocaleString()}</span>
                     </div>
                 `;
-                
+
                 const checkbox = rowInfo.querySelector('.project-check');
                 checkbox.addEventListener('change', async (e) => {
                     project.active = e.target.checked;
@@ -961,15 +979,15 @@
                 const bar = document.createElement('div');
                 bar.className = `project-bar ${project.active ? '' : 'disabled'}`;
                 bar.id = `bar-${project.id}`;
-                
+
                 const widthPx = project.totalWeeks * CONFIG.weekWidth;
                 // Manejo seguro por si startWeek no está definido en datos antiguos
-                const pStart = project.startWeek || 1; 
+                const pStart = project.startWeek || 1;
                 const leftPx = (pStart - 1) * CONFIG.weekWidth;
-                
+
                 bar.style.width = `${widthPx}px`;
                 bar.style.left = `${leftPx}px`;
-                
+
                 bar.innerHTML = `<span class="bar-label">${project.name}</span>`;
 
                 const goLiveOffsetPx = (project.goLiveWeek - 1) * CONFIG.weekWidth;
@@ -1028,14 +1046,14 @@
 
         async function handleDrop(e) {
             if (e.stopPropagation) e.stopPropagation();
-            
+
             if (dragSrcEl !== this) {
                 const oldIndex = parseInt(dragSrcEl.dataset.index);
                 const newIndex = parseInt(this.dataset.index);
-                
+
                 const movedItem = initiatives.splice(oldIndex, 1)[0];
                 initiatives.splice(newIndex, 0, movedItem);
-                
+
                 renderProjects();
                 await saveRoadmapState(); // SAVE ON REORDER
             }
@@ -1089,7 +1107,7 @@
                 isDragging = true;
                 startX = e.clientX;
                 startLeft = parseInt(element.style.left || 0);
-                
+
                 element.style.cursor = 'grabbing';
                 document.body.style.userSelect = 'none';
             });
@@ -1115,15 +1133,15 @@
                 const currentLeft = parseInt(element.style.left || 0);
                 const exactWeekIndex = currentLeft / CONFIG.weekWidth;
                 const snappedWeekIndex = Math.round(exactWeekIndex);
-                
+
                 const snappedLeft = snappedWeekIndex * CONFIG.weekWidth;
-                
+
                 element.style.transition = 'left 0.2s ease';
                 element.style.left = `${snappedLeft}px`;
 
                 // Update Data
-                projectData.startWeek = snappedWeekIndex + 1; 
-                
+                projectData.startWeek = snappedWeekIndex + 1;
+
                 // Re-render labels (deferred)
                 setTimeout(() => {
                     renderProjects();
