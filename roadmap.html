@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <!-- Fuentes Google Fonts (Extraídas del CSS Nespon) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <style>
         /* * =========================================
          * HOJA DE ESTILOS CSS - ESTILO NESPON
@@ -17,15 +20,17 @@
 
         :root {
             /* Paleta de Colores Extraída e Inferida */
-            --primary-orange: #FE8400; /* Color de marca principal (Flush Orange) */
+            --primary-orange: #FE8400;
+            /* Color de marca principal (Flush Orange) */
             --primary-orange-hover: #e57600;
-            --dark-blue: #0f172a; /* Fondo oscuro profesional */
+            --dark-blue: #0f172a;
+            /* Fondo oscuro profesional */
             --text-dark: #333333;
             --text-light: #666666;
             --bg-light: #f9f9f9;
             --white: #ffffff;
             --border-color: #e0e0e0;
-            
+
             /* Tipografía */
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Open Sans', sans-serif;
@@ -45,7 +50,12 @@
             background-color: var(--white);
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: var(--font-heading);
             font-weight: 700;
             margin-bottom: 1rem;
@@ -97,13 +107,18 @@
             padding: 60px 0;
         }
 
-        .text-center { text-align: center; }
-        .text-orange { color: var(--primary-orange); }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-orange {
+            color: var(--primary-orange);
+        }
 
         /* --- Header / Navegación --- */
         .site-header {
             background-color: var(--white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -164,7 +179,7 @@
          * ESTILOS ESPECÍFICOS DEL ROADMAP (CUSTOM)
          * =========================================
          */
-        
+
         /* Dashboard de Costos */
         .dashboard-panel {
             background-color: var(--dark-blue);
@@ -184,7 +199,7 @@
             color: var(--white);
             margin-bottom: 5px;
         }
-        
+
         .dashboard-info p {
             opacity: 0.8;
             font-size: 0.9rem;
@@ -205,8 +220,8 @@
 
         /* Input Date Personalizado */
         .date-input {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 10px 15px;
             border-radius: 4px;
             color: white;
@@ -214,7 +229,7 @@
             font-size: 1rem;
             outline: none;
         }
-        
+
         .date-input::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
@@ -246,7 +261,7 @@
             border-radius: 8px;
             background: var(--white);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
             margin-bottom: 40px;
         }
 
@@ -260,7 +275,8 @@
         }
 
         .sidebar-header {
-            height: 70px; /* Aumentado para coincidir con doble header */
+            height: 70px;
+            /* Aumentado para coincidir con doble header */
             background: var(--bg-light);
             border-bottom: 1px solid var(--border-color);
             display: flex;
@@ -272,20 +288,23 @@
         }
 
         .project-row-info {
-            height: 80px; /* Altura fija por fila */
+            height: 80px;
+            /* Altura fija por fila */
             border-bottom: 1px solid var(--border-color);
             padding: 0 20px;
             display: flex;
             align-items: center;
             transition: background 0.3s;
-            cursor: grab; /* Indica que se puede mover */
+            cursor: grab;
+            /* Indica que se puede mover */
             background-color: var(--white);
         }
 
         .project-row-info:hover {
-            background-color: #fffbf5; /* Un tono muy suave naranja */
+            background-color: #fffbf5;
+            /* Un tono muy suave naranja */
         }
-        
+
         .project-row-info.dragging {
             opacity: 0.5;
             background-color: #f0f0f0;
@@ -302,7 +321,7 @@
             align-items: center;
             width: 10px;
         }
-        
+
         .drag-handle span {
             display: block;
             width: 4px;
@@ -310,8 +329,9 @@
             background-color: #ccc;
             border-radius: 50%;
             margin: 1px 0;
+            padding: 0;
         }
-        
+
         .project-row-info:hover .drag-handle span {
             background-color: var(--primary-orange);
         }
@@ -351,20 +371,24 @@
         /* Header de Semanas y Meses */
         .timeline-header {
             display: flex;
-            flex-direction: column; /* Apilar Meses y Semanas */
-            height: 70px; /* 35px mes + 35px semana */
+            flex-direction: column;
+            /* Apilar Meses y Semanas */
+            height: 70px;
+            /* 35px mes + 35px semana */
             background: var(--bg-light);
             border-bottom: 1px solid var(--border-color);
-            width: max-content; 
+            width: max-content;
         }
 
-        .months-row, .weeks-row {
+        .months-row,
+        .weeks-row {
             display: flex;
             height: 35px;
         }
 
         .months-row {
-            background-color: #e2e8f0; /* Un poco más oscuro para separar */
+            background-color: #e2e8f0;
+            /* Un poco más oscuro para separar */
             border-bottom: 1px solid #cbd5e1;
         }
 
@@ -382,7 +406,8 @@
         }
 
         .week-col {
-            width: 40px; /* Ancho de cada semana */
+            width: 40px;
+            /* Ancho de cada semana */
             flex-shrink: 0;
             border-right: 1px solid #eee;
             display: flex;
@@ -411,7 +436,8 @@
             width: 100%;
             height: 100%;
             display: flex;
-            pointer-events: none; /* Dejar pasar clicks a las barras */
+            pointer-events: none;
+            /* Dejar pasar clicks a las barras */
             z-index: 0;
         }
 
@@ -424,7 +450,8 @@
 
         /* Filas y Barras */
         .timeline-row {
-            height: 80px; /* Debe coincidir con .project-row-info */
+            height: 80px;
+            /* Debe coincidir con .project-row-info */
             border-bottom: 1px solid #f5f5f5;
             position: relative;
             width: 100%;
@@ -437,7 +464,7 @@
             height: 40px;
             background-color: var(--primary-orange);
             border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             cursor: grab;
             display: flex;
             align-items: center;
@@ -452,11 +479,12 @@
 
         .project-bar:active {
             cursor: grabbing;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
 
         .project-bar.disabled {
-            background-color: #cbd5e1; /* Gris */
+            background-color: #cbd5e1;
+            /* Gris */
             opacity: 0.6;
             pointer-events: none;
         }
@@ -467,14 +495,15 @@
             top: 5px;
             bottom: 5px;
             width: 2px;
-            background-color: rgba(255,255,255,0.6);
+            background-color: rgba(255, 255, 255, 0.6);
             border-right: 1px dashed var(--dark-blue);
             z-index: 2;
         }
 
         .go-live-flag {
             position: absolute;
-            top: -25px; /* Arriba de la barra */
+            top: -25px;
+            /* Arriba de la barra */
             transform: translateX(-50%);
             background: var(--dark-blue);
             color: white;
@@ -483,7 +512,7 @@
             border-radius: 3px;
             white-space: nowrap;
         }
-        
+
         .go-live-flag::after {
             content: '';
             position: absolute;
@@ -497,7 +526,7 @@
 
         .bar-label {
             z-index: 3;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* Tabla de resumen simple */
@@ -507,7 +536,7 @@
             margin-top: 20px;
             font-size: 0.9rem;
         }
-        
+
         .summary-table th {
             text-align: left;
             padding: 12px;
@@ -515,7 +544,7 @@
             border-bottom: 2px solid var(--border-color);
             color: var(--dark-blue);
         }
-        
+
         .summary-table td {
             padding: 12px;
             border-bottom: 1px solid var(--border-color);
@@ -528,18 +557,27 @@
             font-size: 0.75rem;
             font-weight: 700;
         }
-        .status-active { background-color: #dcfce7; color: #166534; }
-        .status-inactive { background-color: #f1f5f9; color: #64748b; }
 
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactive {
+            background-color: #f1f5f9;
+            color: #64748b;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="https://nespon.com/wp-content/uploads/2023/08/MicrosoftTeams-image.png" alt="Nespon" style="height: 45px; width: auto;">
+                <img src="https://nespon.com/wp-content/uploads/2023/08/MicrosoftTeams-image.png" alt="Nespon"
+                    style="height: 45px; width: auto;">
             </a>
             <nav class="main-nav">
                 <ul>
@@ -550,12 +588,12 @@
     </header>
 
     <div class="container section-padding">
-        
+
         <!-- Introducción -->
         <div class="text-center" style="margin-bottom: 40px;">
             <h1 class="text-dark-blue">Planificación Estratégica MAS Seguros</h1>
             <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">
-                Visualización interactiva de iniciativas para evaluación de viabilidad, costos y tiempos. 
+                Visualización interactiva de iniciativas para evaluación de viabilidad, costos y tiempos.
             </p>
         </div>
 
@@ -565,7 +603,7 @@
                 <h2>Roadmap y Presupuesto</h2>
                 <p>Ajusta el inicio del proyecto y selecciona las iniciativas.</p>
             </div>
-            
+
             <!-- Selector de Fecha de Inicio -->
             <div class="control-group">
                 <label class="control-label" for="projectStartDate">Inicio de Proyectos</label>
@@ -580,7 +618,7 @@
 
         <!-- Componente de Gantt / Roadmap -->
         <div class="gantt-wrapper">
-            
+
             <!-- Sidebar: Lista de Proyectos -->
             <div class="gantt-sidebar">
                 <div class="sidebar-header">Iniciativas</div>
@@ -591,7 +629,7 @@
 
             <!-- Timeline: Visualización Gráfica -->
             <div class="gantt-timeline-area" id="timelineScrollArea">
-                
+
                 <!-- Cabecera de Semanas -->
                 <div class="timeline-header" id="timelineHeader">
                     <!-- Se llenará con JS: Row de Meses y Row de Semanas -->
@@ -646,17 +684,29 @@
     </footer>
 
     <!-- Lógica de la Aplicación -->
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
-        // Datos Iniciales Proporcionados
+        // --- CONFIGURACIÓN SUPABASE ---
+        // URL y Key proporcionadas (URL decodificada del token: https://psqyleotntcdvuamkjnz.supabase.co)
+        const SUPABASE_URL = 'https://psqyleotntcdvuamkjnz.supabase.co';
+        // Key proporcionada por el usuario
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcXlsZW90bnRjZHZ1YW1ram56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTc0NTUsImV4cCI6MjA4NTI5MzQ1NX0.OEkArT_kVKB936objXhto0d6Ly_134YiZS_S6MRjufA';
+        
+        const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const DB_ROW_ID = 1; // Usamos una sola fila para el estado global de este roadmap
+
+        // Datos Iniciales Proporcionados (Fallback)
         let initiatives = [
             {
                 id: 1,
                 name: "FINS MVP2",
                 devWeeks: 18,
-                goLiveWeek: 23, // Relativo al inicio del proyecto
+                goLiveWeek: 23,
                 totalWeeks: 25,
                 cost: 203300,
-                startWeek: 1, // Posición inicial en el roadmap (semana absoluta)
+                startWeek: 1,
                 active: true
             },
             {
@@ -676,7 +726,7 @@
                 goLiveWeek: 7,
                 totalWeeks: 8,
                 cost: 33000,
-                startWeek: 5, // Un poco desplazado para ejemplo visual
+                startWeek: 5,
                 active: true
             },
             {
@@ -694,8 +744,8 @@
         // Configuración de visualización
         const CONFIG = {
             weekWidth: 40, // px por semana
-            totalWeeksToRender: 60, // Aumentado para ver más futuro
-            startDate: new Date('2026-02-15T00:00:00') // Fecha inicial por defecto
+            totalWeeksToRender: 60, 
+            startDate: new Date('2026-02-15T00:00:00') 
         };
 
         // Elementos DOM
@@ -711,18 +761,89 @@
         let dragSrcEl = null;
 
         // Inicialización
-        function init() {
-            // Sincronizar input date con config
-            elDateInput.addEventListener('change', handleDateChange);
-            // Ejecutar primer render
-            handleDateChange(); 
+        async function init() {
+            // Configurar Listeners
+            elDateInput.addEventListener('change', async (e) => {
+                handleDateChange(false); // Update visual
+                await saveRoadmapState(); // Save to DB
+            });
+
+            // Intentar cargar estado remoto
+            await loadRoadmapState();
+
+            // Render inicial
+            updateDateInputFromConfig();
+            handleDateChange(true); // renderOnly
         }
 
-        function handleDateChange() {
+        // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
+
+        async function loadRoadmapState() {
+            if (!supabase) return;
+            try {
+                const { data, error } = await supabase
+                    .from('roadmap_config')
+                    .select('content')
+                    .eq('id', DB_ROW_ID)
+                    .single();
+
+                if (error) {
+                    console.warn("No se pudo cargar config remota (posiblemente tablas no creadas):", error.message);
+                    return;
+                }
+
+                if (data && data.content) {
+                    // Restaurar estado
+                    if (data.content.initiatives) {
+                        initiatives = data.content.initiatives;
+                    }
+                    if (data.content.startDate) {
+                        CONFIG.startDate = new Date(data.content.startDate);
+                        updateDateInputFromConfig();
+                    }
+                    console.log("Estado cargado desde Supabase");
+                }
+            } catch (err) {
+                console.error("Error loading state:", err);
+            }
+        }
+
+        async function saveRoadmapState() {
+            if (!supabase) return;
+            
+            const stateToSave = {
+                initiatives: initiatives,
+                startDate: CONFIG.startDate.toISOString()
+            };
+
+            try {
+                const { error } = await supabase
+                    .from('roadmap_config')
+                    .upsert({ 
+                        id: DB_ROW_ID, 
+                        content: stateToSave, 
+                        updated_at: new Date() 
+                    });
+                
+                if (error) throw error;
+                console.log("Estado guardado en Supabase");
+            } catch (err) {
+                console.error("Error saving state:", err);
+            }
+        }
+
+        function updateDateInputFromConfig() {
+            // Formatear Date a YYYY-MM-DD para el input
+            const year = CONFIG.startDate.getFullYear();
+            const month = String(CONFIG.startDate.getMonth() + 1).padStart(2, '0');
+            const day = String(CONFIG.startDate.getDate()).padStart(2, '0');
+            elDateInput.value = `${year}-${month}-${day}`;
+        }
+
+        function handleDateChange(renderOnly = false) {
             // Actualizar fecha en config desde el input
             const inputVal = elDateInput.value;
             if(inputVal) {
-                // Truco para evitar problemas de zona horaria al parsear "YYYY-MM-DD"
                 const parts = inputVal.split('-');
                 CONFIG.startDate = new Date(parts[0], parts[1] - 1, parts[2]);
             }
@@ -732,45 +853,34 @@
             updateTotalCost();
         }
 
-        // Renderiza la estructura base del grid (cabeceras Mes/Semana y líneas verticales)
+        // Renderiza la estructura base del grid
         function renderGridStructure() {
-            // Limpiar
             elHeader.innerHTML = '';
             elBgGrid.innerHTML = '';
 
-            // Ancho total del área
             const totalWidth = CONFIG.totalWeeksToRender * CONFIG.weekWidth;
             elHeader.style.width = totalWidth + 'px';
             elBody.style.width = totalWidth + 'px';
 
-            // Contenedores para las dos filas del header
             const monthsRow = document.createElement('div');
             monthsRow.className = 'months-row';
             
             const weeksRow = document.createElement('div');
             weeksRow.className = 'weeks-row';
 
-            // Variables para agrupar meses
             let currentMonthLabel = '';
             let currentMonthWeeksCount = 0;
-            let currentMonthStartIndex = 0;
 
             for (let i = 0; i < CONFIG.totalWeeksToRender; i++) {
-                // Calcular fecha de inicio de esta semana
                 const weekDate = new Date(CONFIG.startDate);
                 weekDate.setDate(weekDate.getDate() + (i * 7));
                 
-                // Formato Mes (ej: "FEB 26")
                 const monthName = weekDate.toLocaleString('es-ES', { month: 'short' }).toUpperCase();
                 const yearShort = weekDate.getFullYear().toString().substr(-2);
                 const fullLabel = `${monthName} ${yearShort}`;
-
-                // Formato Día (ej: "15")
                 const dayNumber = weekDate.getDate();
 
-                // --- Lógica de Agrupación de Meses ---
                 if (fullLabel !== currentMonthLabel) {
-                    // Si cambia el mes (y no es el primero), renderizamos el bloque anterior
                     if (currentMonthWeeksCount > 0) {
                         const monthBlock = document.createElement('div');
                         monthBlock.className = 'month-block';
@@ -778,26 +888,22 @@
                         monthBlock.style.width = (currentMonthWeeksCount * CONFIG.weekWidth) + 'px';
                         monthsRow.appendChild(monthBlock);
                     }
-                    // Reset para nuevo mes
                     currentMonthLabel = fullLabel;
                     currentMonthWeeksCount = 1;
                 } else {
                     currentMonthWeeksCount++;
                 }
 
-                // --- Render Semanas (Nivel inferior) ---
                 const weekCol = document.createElement('div');
                 weekCol.className = 'week-col';
-                weekCol.textContent = dayNumber; // Mostramos el día
+                weekCol.textContent = dayNumber;
                 weeksRow.appendChild(weekCol);
 
-                // --- Render Grid Fondo ---
                 const gridCol = document.createElement('div');
                 gridCol.className = 'grid-col';
                 elBgGrid.appendChild(gridCol);
             }
 
-            // Renderizar el último mes pendiente al salir del loop
             if (currentMonthWeeksCount > 0) {
                 const monthBlock = document.createElement('div');
                 monthBlock.className = 'month-block';
@@ -806,25 +912,23 @@
                 monthsRow.appendChild(monthBlock);
             }
 
-            // Agregar filas al header
             elHeader.appendChild(monthsRow);
             elHeader.appendChild(weeksRow);
         }
 
-        // Renderiza filas, checkboxes y barras
+        // Renderiza proyectos
         function renderProjects() {
             elSidebar.innerHTML = '';
-            // Limpiar filas de proyectos existentes (manteniendo el bgGrid)
             const existingRows = elBody.querySelectorAll('.timeline-row');
             existingRows.forEach(row => row.remove());
             elTableBody.innerHTML = '';
 
             initiatives.forEach((project, index) => {
-                // 1. Sidebar Row (Habilitado para Drag & Drop)
+                // Sidebar
                 const rowInfo = document.createElement('div');
                 rowInfo.className = 'project-row-info';
-                rowInfo.setAttribute('draggable', 'true'); // IMPORTANTE PARA DND
-                rowInfo.dataset.index = index; // Indice actual en el array
+                rowInfo.setAttribute('draggable', 'true');
+                rowInfo.dataset.index = index;
 
                 rowInfo.innerHTML = `
                     <div class="drag-handle">
@@ -837,49 +941,40 @@
                     </div>
                 `;
                 
-                // Event listener checkbox
                 const checkbox = rowInfo.querySelector('.project-check');
-                checkbox.addEventListener('change', (e) => {
+                checkbox.addEventListener('change', async (e) => {
                     project.active = e.target.checked;
                     updateProjectState(project.id);
                     updateTotalCost();
                     updateTable();
+                    await saveRoadmapState(); // SAVE ON CHECK
                 });
 
-                // Listeners para Reordenamiento (Row Drag & Drop)
                 addListDragListeners(rowInfo);
-
                 elSidebar.appendChild(rowInfo);
 
-                // 2. Timeline Row & Bar
+                // Timeline Bar
                 const rowTrack = document.createElement('div');
                 rowTrack.className = 'timeline-row';
                 rowTrack.dataset.id = project.id;
 
-                // Crear la barra del proyecto
                 const bar = document.createElement('div');
                 bar.className = `project-bar ${project.active ? '' : 'disabled'}`;
                 bar.id = `bar-${project.id}`;
                 
-                // Estilo y Posición Inicial
                 const widthPx = project.totalWeeks * CONFIG.weekWidth;
-                const leftPx = (project.startWeek - 1) * CONFIG.weekWidth;
+                // Manejo seguro por si startWeek no está definido en datos antiguos
+                const pStart = project.startWeek || 1; 
+                const leftPx = (pStart - 1) * CONFIG.weekWidth;
                 
                 bar.style.width = `${widthPx}px`;
                 bar.style.left = `${leftPx}px`;
                 
-                // Contenido de la barra
-                bar.innerHTML = `
-                    <span class="bar-label">${project.name}</span>
-                `;
+                bar.innerHTML = `<span class="bar-label">${project.name}</span>`;
 
-                // Marcador de Go Live (Salida a producción)
-                // GoLiveWeek es relativo al inicio de la barra.
                 const goLiveOffsetPx = (project.goLiveWeek - 1) * CONFIG.weekWidth;
-                
-                // Calcular fecha aproximada de Go Live para mostrar en label
                 const barStartDate = new Date(CONFIG.startDate);
-                barStartDate.setDate(barStartDate.getDate() + ((project.startWeek - 1) * 7));
+                barStartDate.setDate(barStartDate.getDate() + ((pStart - 1) * 7));
                 const goLiveDate = new Date(barStartDate);
                 goLiveDate.setDate(goLiveDate.getDate() + ((project.goLiveWeek - 1) * 7));
                 const goLiveLabel = goLiveDate.toLocaleString('es-ES', { month: 'short', day: 'numeric' });
@@ -888,21 +983,18 @@
                 marker.className = 'go-live-marker';
                 marker.style.left = `${goLiveOffsetPx}px`;
                 marker.innerHTML = `<div class="go-live-flag">Go Live: ${goLiveLabel}</div>`;
-                
                 bar.appendChild(marker);
 
-                // Funcionalidad Drag and Drop de la BARRA (Tiempo)
                 addBarDragFunctionality(bar, project);
 
                 rowTrack.appendChild(bar);
                 elBody.appendChild(rowTrack);
 
-                // 3. Tabla Detalle
                 addTableRow(project);
             });
         }
 
-        // --- Funciones para Drag & Drop de FILAS (Reordenar) ---
+        // --- Drag & Drop de FILAS (Orden Vertical) ---
         function addListDragListeners(row) {
             row.addEventListener('dragstart', handleDragStart, false);
             row.addEventListener('dragenter', handleDragEnter, false);
@@ -921,9 +1013,7 @@
         }
 
         function handleDragOver(e) {
-            if (e.preventDefault) {
-                e.preventDefault(); // Necesario para permitir el drop
-            }
+            if (e.preventDefault) e.preventDefault();
             e.dataTransfer.dropEffect = 'move';
             return false;
         }
@@ -936,30 +1026,28 @@
             this.style.borderTop = "";
         }
 
-        function handleDrop(e) {
-            if (e.stopPropagation) {
-                e.stopPropagation(); // Stops the browser from redirecting.
-            }
+        async function handleDrop(e) {
+            if (e.stopPropagation) e.stopPropagation();
+            
             if (dragSrcEl !== this) {
                 const oldIndex = parseInt(dragSrcEl.dataset.index);
                 const newIndex = parseInt(this.dataset.index);
+                
                 const movedItem = initiatives.splice(oldIndex, 1)[0];
                 initiatives.splice(newIndex, 0, movedItem);
+                
                 renderProjects();
+                await saveRoadmapState(); // SAVE ON REORDER
             }
             return false;
         }
 
         function handleDragEnd(e) {
             this.classList.remove('dragging');
-            const items = document.querySelectorAll('.project-row-info');
-            items.forEach(function (item) {
-                item.style.borderTop = "";
-            });
+            document.querySelectorAll('.project-row-info').forEach(item => item.style.borderTop = "");
         }
 
-        // --------------------------------------------------------
-
+        // --- Helpers HTML ---
         function addTableRow(project) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -981,45 +1069,36 @@
         function updateProjectState(id) {
             const bar = document.getElementById(`bar-${id}`);
             const project = initiatives.find(p => p.id === id);
-            
-            if (project.active) {
-                bar.classList.remove('disabled');
-            } else {
-                bar.classList.add('disabled');
-            }
+            if (project.active) bar.classList.remove('disabled');
+            else bar.classList.add('disabled');
         }
 
         function updateTotalCost() {
-            const total = initiatives
-                .filter(p => p.active)
-                .reduce((sum, p) => sum + p.cost, 0);
-            
+            const total = initiatives.filter(p => p.active).reduce((sum, p) => sum + p.cost, 0);
             elTotalCost.innerText = `USD ${total.toLocaleString()}`;
         }
 
-        // Lógica de Arrastre de BARRA (Timeline - Mover en tiempo)
+        // --- Drag & Drop de BARRAS (Orden Temporal) ---
         function addBarDragFunctionality(element, projectData) {
             let isDragging = false;
             let startX;
             let startLeft;
 
             element.addEventListener('mousedown', (e) => {
-                if (!projectData.active) return; // No mover si está inactivo
+                if (!projectData.active) return;
                 isDragging = true;
-                startX = e.clientX; // Posición X del mouse
+                startX = e.clientX;
                 startLeft = parseInt(element.style.left || 0);
                 
                 element.style.cursor = 'grabbing';
-                document.body.style.userSelect = 'none'; // Prevenir selección de texto
+                document.body.style.userSelect = 'none';
             });
 
             document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
-
                 const deltaX = e.clientX - startX;
                 let newLeft = startLeft + deltaX;
 
-                // Restricciones (Snap to grid 40px)
                 if (newLeft < 0) newLeft = 0;
                 const maxLeft = (CONFIG.totalWeeksToRender * CONFIG.weekWidth) - element.offsetWidth;
                 if (newLeft > maxLeft) newLeft = maxLeft;
@@ -1027,37 +1106,36 @@
                 element.style.left = `${newLeft}px`;
             });
 
-            document.addEventListener('mouseup', (e) => {
+            document.addEventListener('mouseup', async (e) => {
                 if (!isDragging) return;
                 isDragging = false;
                 element.style.cursor = 'grab';
                 document.body.style.userSelect = '';
 
-                // Snap
                 const currentLeft = parseInt(element.style.left || 0);
                 const exactWeekIndex = currentLeft / CONFIG.weekWidth;
                 const snappedWeekIndex = Math.round(exactWeekIndex);
                 
                 const snappedLeft = snappedWeekIndex * CONFIG.weekWidth;
                 
-                // Animar
                 element.style.transition = 'left 0.2s ease';
                 element.style.left = `${snappedLeft}px`;
 
-                // Actualizar datos
+                // Update Data
                 projectData.startWeek = snappedWeekIndex + 1; 
                 
-                // Actualizar label de Go Live porque la fecha ha cambiado
-                // Re-renderizamos todo el set para actualizar etiquetas
+                // Re-render labels (deferred)
                 setTimeout(() => {
                     renderProjects();
                 }, 200);
+
+                await saveRoadmapState(); // SAVE ON MOVE
             });
         }
 
-        // Ejecutar
         window.addEventListener('DOMContentLoaded', init);
 
     </script>
 </body>
+
 </html>
