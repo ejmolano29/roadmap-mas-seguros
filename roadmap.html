@@ -687,25 +687,40 @@
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Debug Panel -->
+    <div id="debug-panel"
+        style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: lime; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 12px; z-index: 9999; max-width: 300px;">
+        <strong>Debug Info:</strong><br>
+        Supabase: <span id="debug-supabase">Probrando...</span><br>
+        Data Status: <span id="debug-data">Esperando...</span><br>
+        Initiatives: <span id="debug-count">?</span><br>
+        Last Error: <span id="debug-error" style="color: red;">None</span>
+    </div>
+
     <script>
+        function updateDebug(key, value) {
+            const el = document.getElementById(`debug-${key}`);
+            if (el) el.textContent = value;
+        }
+
         // --- CONFIGURACIÓN SUPABASE ---
         // URL y Key proporcionadas (URL decodificada del token: https://psqyleotntcdvuamkjnz.supabase.co)
         const SUPABASE_URL = 'https://psqyleotntcdvuamkjnz.supabase.co';
         // Key proporcionada por el usuario
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcXlsZW90bnRjZHZ1YW1ram56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTc0NTUsImV4cCI6MjA4NTI5MzQ1NX0.OEkArT_kVKB936objXhto0d6Ly_134YiZS_S6MRjufA';
 
-        let supabase = null;
         try {
             if (window.supabase) {
                 supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
                 console.log("Supabase cliente inicializado");
+                updateDebug('supabase', 'Client Initialized');
             } else {
                 console.error("Librería Supabase no cargada");
-                alert("Error: La librería de Supabase no se pudo cargar. Revisa tu conexión a internet.");
+                updateDebug('supabase', 'NOT LOADED (Library missing)');
             }
         } catch (e) {
             console.error("Error inicializando Supabase:", e);
-            alert("Error inicializando Supabase: " + e.message);
+            updateDebug('supabase', 'Error: ' + e.message);
         }
 
         const DB_ROW_ID = 1;
@@ -784,6 +799,8 @@
             // Intentar cargar estado remoto
             await loadRoadmapState();
 
+            updateDebug('count', initiatives.length);
+
             // Render inicial
             updateDateInputFromConfig();
             handleDateChange(true); // renderOnly
@@ -792,8 +809,12 @@
         // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
 
         async function loadRoadmapState() {
-            if (!supabase) return;
+            if (!supabase) {
+                updateDebug('data', 'Using Default (No Auth)');
+                return;
+            }
             try {
+                updateDebug('data', 'Fetching...');
                 const { data, error } = await supabase
                     .from('roadmap_config')
                     .select('content')
@@ -802,7 +823,8 @@
 
                 if (error) {
                     console.warn("Error Supabase:", error);
-                    alert("Error cargando roadmap de Supabase: " + error.message + " (" + error.code + ")");
+                    updateDebug('data', 'Error Fetching');
+                    updateDebug('error', error.message + ' (' + error.code + ')');
                     return;
                 }
 
@@ -810,19 +832,23 @@
                     // Restaurar estado
                     if (data.content.initiatives) {
                         initiatives = data.content.initiatives;
+                        updateDebug('data', 'Success (Loaded)');
+                    } else {
+                        updateDebug('data', 'Success (Partial - No initiatives)');
                     }
                     if (data.content.startDate) {
                         CONFIG.startDate = new Date(data.content.startDate);
                         updateDateInputFromConfig();
                     }
-                    console.log("Estado cargado desde Supabase:", data.content);
+                    console.log("Estado cargado:", data.content);
                 } else {
-                    console.log("Supabase devolvió datos vacíos o sin contenido");
-                    alert("Conectado a Supabase pero no se encontraron datos válidos en la fila ID=1.");
+                    console.log("Datos vacíos");
+                    updateDebug('data', 'Empty Response');
+                    updateDebug('error', 'Row found but content is empty');
                 }
             } catch (err) {
                 console.error("Error loading state:", err);
-                alert("Error crítico cargando estado: " + err.message);
+                updateDebug('error', err.message);
             }
         }
 
