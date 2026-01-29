@@ -1,0 +1,55 @@
+{
+  "startDate": "2026-02-15T03:00:00.000Z",
+  "initiatives": [
+    {
+      "id": 3,
+      "cost": 33000,
+      "name": "Check In/Out",
+      "active": true,
+      "devWeeks": 6,
+      "startWeek": 1,
+      "goLiveWeek": 7,
+      "totalWeeks": 8
+    },
+    {
+      "id": 2,
+      "cost": 86800,
+      "name": "Geolocalización",
+      "active": true,
+      "devWeeks": 10,
+      "startWeek": 3,
+      "goLiveWeek": 13,
+      "totalWeeks": 14
+    },
+    {
+      "id": 1,
+      "cost": 203300,
+      "name": "FINS MVP2",
+      "active": true,
+      "devWeeks": 18,
+      "startWeek": 4,
+      "goLiveWeek": 23,
+      "totalWeeks": 25
+    },
+    {
+      "id": 4,
+      "cost": 108400,
+      "name": "GAP MPV2",
+      "active": true,
+      "devWeeks": 13,
+      "startWeek": 4,
+      "goLiveWeek": 16,
+      "totalWeeks": 17
+    },
+    {
+      "id": 5,
+      "cost": 79600,
+      "name": "Portal Clientes",
+      "active": true,
+      "devWeeks": 8,
+      "startWeek": 15,
+      "goLiveWeek": 11,
+      "totalWeeks": 14
+    }
+  ]
+}
