@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Estratégico - MAS Seguros</title>
+    <!-- Fuentes Google Fonts (Extraídas del CSS Nespon) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* * =========================================
+         * HOJA DE ESTILOS CSS - ESTILO NESPON
+         * =========================================
+         */
+
+        :root {
+            /* Paleta de Colores Extraída e Inferida */
+            --primary-orange: #FE8400; /* Color de marca principal (Flush Orange) */
+            --primary-orange-hover: #e57600;
+            --dark-blue: #0f172a; /* Fondo oscuro profesional */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            
+            /* Tipografía */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        /* --- Reset y Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Utilidades --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(254, 132, 0, 0.3);
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-orange { color: var(--primary-orange); }
+
+        /* --- Header / Navegación --- */
+        .site-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark-blue);
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: #1a1a1a;
+            color: #d1d1d1;
+            padding: 40px 0 20px;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* * =========================================
+         * ESTILOS ESPECÍFICOS DEL ROADMAP (CUSTOM)
+         * =========================================
+         */
+        
+        /* Dashboard de Costos */
+        .dashboard-panel {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            gap: 20px;
+        }
+
+        .dashboard-info h2 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+        
+        .dashboard-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-label {
+            color: var(--primary-orange);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Input Date Personalizado */
+        .date-input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 4px;
+            color: white;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .date-input::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        .cost-display {
+            text-align: right;
+        }
+
+        .cost-label {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--primary-orange);
+        }
+
+        .cost-value {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Contenedor del Gantt */
+        .gantt-wrapper {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--white);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        /* Columna Izquierda (Nombres y Checkboxes) */
+        .gantt-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border-color);
+            background: var(--white);
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            height: 70px; /* Aumentado para coincidir con doble header */
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--dark-blue);
+        }
+
+        .project-row-info {
+            height: 80px; /* Altura fija por fila */
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s;
+            cursor: grab; /* Indica que se puede mover */
+            background-color: var(--white);
+        }
+
+        .project-row-info:hover {
+            background-color: #fffbf5; /* Un tono muy suave naranja */
+        }
+        
+        .project-row-info.dragging {
+            opacity: 0.5;
+            background-color: #f0f0f0;
+            border: 2px dashed var(--primary-orange);
+        }
+
+        .drag-handle {
+            margin-right: 10px;
+            color: #ccc;
+            cursor: grab;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 10px;
+        }
+        
+        .drag-handle span {
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 1px 0;
+            padding: 0;
+        }
+        
+        .project-row-info:hover .drag-handle span {
+            background-color: var(--primary-orange);
+        }
+
+        .project-check {
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-orange);
+            cursor: pointer;
+        }
+
+        .project-details h4 {
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+            color: var(--dark-blue);
+        }
+
+        .project-details span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+        }
+
+        /* Area de Timeline (Derecha) */
+        .gantt-timeline-area {
+            flex-grow: 1;
+            overflow-x: auto;
+            position: relative;
+            cursor: grab;
+        }
+
+        .gantt-timeline-area:active {
+            cursor: grabbing;
+        }
+
+        /* Header de Semanas y Meses */
+        .timeline-header {
+            display: flex;
+            flex-direction: column; /* Apilar Meses y Semanas */
+            height: 70px; /* 35px mes + 35px semana */
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+            width: max-content; 
+        }
+
+        .months-row, .weeks-row {
+            display: flex;
+            height: 35px;
+        }
+
+        .months-row {
+            background-color: #e2e8f0; /* Un poco más oscuro para separar */
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .month-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #cbd5e1;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            text-transform: uppercase;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .week-col {
+            width: 40px; /* Ancho de cada semana */
+            flex-shrink: 0;
+            border-right: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            user-select: none;
+        }
+
+        .week-col:nth-child(5n) {
+            background-color: #f1f1f1;
+            font-weight: bold;
+        }
+
+        /* Cuerpo del Timeline */
+        .timeline-body {
+            position: relative;
+            width: max-content;
+        }
+
+        .timeline-bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            pointer-events: none; /* Dejar pasar clicks a las barras */
+            z-index: 0;
+        }
+
+        .grid-col {
+            width: 40px;
+            flex-shrink: 0;
+            border-right: 1px solid #f0f0f0;
+            height: 100%;
+        }
+
+        /* Filas y Barras */
+        .timeline-row {
+            height: 80px; /* Debe coincidir con .project-row-info */
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .project-bar {
+            position: absolute;
+            top: 20px;
+            height: 40px;
+            background-color: var(--primary-orange);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: opacity 0.3s, background-color 0.3s;
+        }
+
+        .project-bar:active {
+            cursor: grabbing;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .project-bar.disabled {
+            background-color: #cbd5e1; /* Gris */
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Marcador de Go Live */
+        .go-live-marker {
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background-color: rgba(255,255,255,0.6);
+            border-right: 1px dashed var(--dark-blue);
+            z-index: 2;
+        }
+
+        .go-live-flag {
+            position: absolute;
+            top: -25px; /* Arriba de la barra */
+            transform: translateX(-50%);
+            background: var(--dark-blue);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        
+        .go-live-flag::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 4px 4px 0;
+            border-style: solid;
+            border-color: var(--dark-blue) transparent transparent transparent;
+        }
+
+        .bar-label {
+            z-index: 3;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Tabla de resumen simple */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .summary-table th {
+            text-align: left;
+            padding: 12px;
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--border-color);
+            color: var(--dark-blue);
+        }
+        
+        .summary-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .status-active { background-color: #dcfce7; color: #166534; }
+        .status-inactive { background-color: #f1f5f9; color: #64748b; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="https://nespon.com/wp-content/uploads/2023/08/MicrosoftTeams-image.png" alt="Nespon" style="height: 45px; width: auto;">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container section-padding">
+        
+        <!-- Introducción -->
+        <div class="text-center" style="margin-bottom: 40px;">
+            <h1 class="text-dark-blue">Planificación Estratégica MAS Seguros</h1>
+            <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">
+                Visualización interactiva de iniciativas para evaluación de viabilidad, costos y tiempos. 
+            </p>
+        </div>
+
+        <!-- Dashboard de Costos -->
+        <div class="dashboard-panel">
+            <div class="dashboard-info">
+                <h2>Roadmap y Presupuesto</h2>
+                <p>Ajusta el inicio del proyecto y selecciona las iniciativas.</p>
+            </div>
+            
+            <!-- Selector de Fecha de Inicio -->
+            <div class="control-group">
+                <label class="control-label" for="projectStartDate">Inicio de Proyectos</label>
+                <input type="date" id="projectStartDate" class="date-input" value="2026-02-15">
+            </div>
+
+            <div class="cost-display">
+                <span class="cost-label">Inversión Total Estimada</span>
+                <div class="cost-value" id="totalCostDisplay">USD 0</div>
+            </div>
+        </div>
+
+        <!-- Componente de Gantt / Roadmap -->
+        <div class="gantt-wrapper">
+            
+            <!-- Sidebar: Lista de Proyectos -->
+            <div class="gantt-sidebar">
+                <div class="sidebar-header">Iniciativas</div>
+                <div id="sidebarContent">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+
+            <!-- Timeline: Visualización Gráfica -->
+            <div class="gantt-timeline-area" id="timelineScrollArea">
+                
+                <!-- Cabecera de Semanas -->
+                <div class="timeline-header" id="timelineHeader">
+                    <!-- Se llenará con JS: Row de Meses y Row de Semanas -->
+                </div>
+
+                <!-- Cuerpo del Gantt -->
+                <div class="timeline-body" id="timelineBody">
+                    <!-- Grid de fondo -->
+                    <div class="timeline-bg-grid" id="bgGrid"></div>
+                    <!-- Filas de proyectos se llenan con JS -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tabla Detallada -->
+        <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 20px;">Detalle de Iniciativas</h3>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Iniciativa</th>
+                        <th>Desarrollo</th>
+                        <th>Salida a Prod.</th>
+                        <th>Tiempo Total</th>
+                        <th>Costo (USD)</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="detailsTableBody">
+                    <!-- JS -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Footer simple -->
+                <div class="footer-col">
+                    <h4>Nespon</h4>
+                    <p>Transformando negocios a través de la tecnología.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Nespon. Todos los derechos reservados. Uso exclusivo para MAS Seguros.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de la Aplicación -->
+    <script>
+        // Datos Iniciales Proporcionados
+        let initiatives = [
+            {
+                id: 1,
+                name: "FINS MVP2",
+                devWeeks: 18,
+                goLiveWeek: 23, // Relativo al inicio del proyecto
+                totalWeeks: 25,
+                cost: 203300,
+                startWeek: 1, // Posición inicial en el roadmap (semana absoluta)
+                active: true
+            },
+            {
+                id: 2,
+                name: "Geolocalización",
+                devWeeks: 10,
+                goLiveWeek: 13,
+                totalWeeks: 14,
+                cost: 86800,
+                startWeek: 1,
+                active: true
+            },
+            {
+                id: 3,
+                name: "Check In/Out",
+                devWeeks: 6,
+                goLiveWeek: 7,
+                totalWeeks: 8,
+                cost: 33000,
+                startWeek: 5, // Un poco desplazado para ejemplo visual
+                active: true
+            },
+            {
+                id: 4,
+                name: "GAP MPV2",
+                devWeeks: 13,
+                goLiveWeek: 16,
+                totalWeeks: 17,
+                cost: 108400,
+                startWeek: 3,
+                active: true
+            }
+        ];
+
+        // Configuración de visualización
+        const CONFIG = {
+            weekWidth: 40, // px por semana
+            totalWeeksToRender: 60, // Aumentado para ver más futuro
+            startDate: new Date('2026-02-15T00:00:00') // Fecha inicial por defecto
+        };
+
+        // Elementos DOM
+        const elSidebar = document.getElementById('sidebarContent');
+        const elHeader = document.getElementById('timelineHeader');
+        const elBody = document.getElementById('timelineBody');
+        const elBgGrid = document.getElementById('bgGrid');
+        const elTotalCost = document.getElementById('totalCostDisplay');
+        const elTableBody = document.getElementById('detailsTableBody');
+        const elDateInput = document.getElementById('projectStartDate');
+
+        // Variables para Drag & Drop de filas (reordenar)
+        let dragSrcEl = null;
+
+        // Inicialización
+        function init() {
+            // Sincronizar input date con config
+            elDateInput.addEventListener('change', handleDateChange);
+            // Ejecutar primer render
+            handleDateChange(); 
+        }
+
+        function handleDateChange() {
+            // Actualizar fecha en config desde el input
+            const inputVal = elDateInput.value;
+            if(inputVal) {
+                // Truco para evitar problemas de zona horaria al parsear "YYYY-MM-DD"
+                const parts = inputVal.split('-');
+                CONFIG.startDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            }
+
+            renderGridStructure();
+            renderProjects();
+            updateTotalCost();
+        }
+
+        // Renderiza la estructura base del grid (cabeceras Mes/Semana y líneas verticales)
+        function renderGridStructure() {
+            // Limpiar
+            elHeader.innerHTML = '';
+            elBgGrid.innerHTML = '';
+
+            // Ancho total del área
+            const totalWidth = CONFIG.totalWeeksToRender * CONFIG.weekWidth;
+            elHeader.style.width = totalWidth + 'px';
+            elBody.style.width = totalWidth + 'px';
+
+            // Contenedores para las dos filas del header
+            const monthsRow = document.createElement('div');
+            monthsRow.className = 'months-row';
+            
+            const weeksRow = document.createElement('div');
+            weeksRow.className = 'weeks-row';
+
+            // Variables para agrupar meses
+            let currentMonthLabel = '';
+            let currentMonthWeeksCount = 0;
+            let currentMonthStartIndex = 0;
+
+            for (let i = 0; i < CONFIG.totalWeeksToRender; i++) {
+                // Calcular fecha de inicio de esta semana
+                const weekDate = new Date(CONFIG.startDate);
+                weekDate.setDate(weekDate.getDate() + (i * 7));
+                
+                // Formato Mes (ej: "FEB 26")
+                const monthName = weekDate.toLocaleString('es-ES', { month: 'short' }).toUpperCase();
+                const yearShort = weekDate.getFullYear().toString().substr(-2);
+                const fullLabel = `${monthName} ${yearShort}`;
+
+                // Formato Día (ej: "15")
+                const dayNumber = weekDate.getDate();
+
+                // --- Lógica de Agrupación de Meses ---
+                if (fullLabel !== currentMonthLabel) {
+                    // Si cambia el mes (y no es el primero), renderizamos el bloque anterior
+                    if (currentMonthWeeksCount > 0) {
+                        const monthBlock = document.createElement('div');
+                        monthBlock.className = 'month-block';
+                        monthBlock.textContent = currentMonthLabel;
+                        monthBlock.style.width = (currentMonthWeeksCount * CONFIG.weekWidth) + 'px';
+                        monthsRow.appendChild(monthBlock);
+                    }
+                    // Reset para nuevo mes
+                    currentMonthLabel = fullLabel;
+                    currentMonthWeeksCount = 1;
+                } else {
+                    currentMonthWeeksCount++;
+                }
+
+                // --- Render Semanas (Nivel inferior) ---
+                const weekCol = document.createElement('div');
+                weekCol.className = 'week-col';
+                weekCol.textContent = dayNumber; // Mostramos el día
+                weeksRow.appendChild(weekCol);
+
+                // --- Render Grid Fondo ---
+                const gridCol = document.createElement('div');
+                gridCol.className = 'grid-col';
+                elBgGrid.appendChild(gridCol);
+            }
+
+            // Renderizar el último mes pendiente al salir del loop
+            if (currentMonthWeeksCount > 0) {
+                const monthBlock = document.createElement('div');
+                monthBlock.className = 'month-block';
+                monthBlock.textContent = currentMonthLabel;
+                monthBlock.style.width = (currentMonthWeeksCount * CONFIG.weekWidth) + 'px';
+                monthsRow.appendChild(monthBlock);
+            }
+
+            // Agregar filas al header
+            elHeader.appendChild(monthsRow);
+            elHeader.appendChild(weeksRow);
+        }
+
+        // Renderiza filas, checkboxes y barras
+        function renderProjects() {
+            elSidebar.innerHTML = '';
+            // Limpiar filas de proyectos existentes (manteniendo el bgGrid)
+            const existingRows = elBody.querySelectorAll('.timeline-row');
+            existingRows.forEach(row => row.remove());
+            elTableBody.innerHTML = '';
+
+            initiatives.forEach((project, index) => {
+                // 1. Sidebar Row (Habilitado para Drag & Drop)
+                const rowInfo = document.createElement('div');
+                rowInfo.className = 'project-row-info';
+                rowInfo.setAttribute('draggable', 'true'); // IMPORTANTE PARA DND
+                rowInfo.dataset.index = index; // Indice actual en el array
+
+                rowInfo.innerHTML = `
+                    <div class="drag-handle">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <input type="checkbox" class="project-check" id="check-${project.id}" ${project.active ? 'checked' : ''}>
+                    <div class="project-details">
+                        <h4>${project.name}</h4>
+                        <span>${project.totalWeeks} semanas | $${project.cost.toLocaleString()}</span>
+                    </div>
+                `;
+                
+                // Event listener checkbox
+                const checkbox = rowInfo.querySelector('.project-check');
+                checkbox.addEventListener('change', (e) => {
+                    project.active = e.target.checked;
+                    updateProjectState(project.id);
+                    updateTotalCost();
+                    updateTable();
+                });
+
+                // Listeners para Reordenamiento (Row Drag & Drop)
+                addListDragListeners(rowInfo);
+
+                elSidebar.appendChild(rowInfo);
+
+                // 2. Timeline Row & Bar
+                const rowTrack = document.createElement('div');
+                rowTrack.className = 'timeline-row';
+                rowTrack.dataset.id = project.id;
+
+                // Crear la barra del proyecto
+                const bar = document.createElement('div');
+                bar.className = `project-bar ${project.active ? '' : 'disabled'}`;
+                bar.id = `bar-${project.id}`;
+                
+                // Estilo y Posición Inicial
+                const widthPx = project.totalWeeks * CONFIG.weekWidth;
+                const leftPx = (project.startWeek - 1) * CONFIG.weekWidth;
+                
+                bar.style.width = `${widthPx}px`;
+                bar.style.left = `${leftPx}px`;
+                
+                // Contenido de la barra
+                bar.innerHTML = `
+                    <span class="bar-label">${project.name}</span>
+                `;
+
+                // Marcador de Go Live (Salida a producción)
+                // GoLiveWeek es relativo al inicio de la barra.
+                const goLiveOffsetPx = (project.goLiveWeek - 1) * CONFIG.weekWidth;
+                
+                // Calcular fecha aproximada de Go Live para mostrar en label
+                const barStartDate = new Date(CONFIG.startDate);
+                barStartDate.setDate(barStartDate.getDate() + ((project.startWeek - 1) * 7));
+                const goLiveDate = new Date(barStartDate);
+                goLiveDate.setDate(goLiveDate.getDate() + ((project.goLiveWeek - 1) * 7));
+                const goLiveLabel = goLiveDate.toLocaleString('es-ES', { month: 'short', day: 'numeric' });
+
+                const marker = document.createElement('div');
+                marker.className = 'go-live-marker';
+                marker.style.left = `${goLiveOffsetPx}px`;
+                marker.innerHTML = `<div class="go-live-flag">Go Live: ${goLiveLabel}</div>`;
+                
+                bar.appendChild(marker);
+
+                // Funcionalidad Drag and Drop de la BARRA (Tiempo)
+                addBarDragFunctionality(bar, project);
+
+                rowTrack.appendChild(bar);
+                elBody.appendChild(rowTrack);
+
+                // 3. Tabla Detalle
+                addTableRow(project);
+            });
+        }
+
+        // --- Funciones para Drag & Drop de FILAS (Reordenar) ---
+        function addListDragListeners(row) {
+            row.addEventListener('dragstart', handleDragStart, false);
+            row.addEventListener('dragenter', handleDragEnter, false);
+            row.addEventListener('dragover', handleDragOver, false);
+            row.addEventListener('dragleave', handleDragLeave, false);
+            row.addEventListener('drop', handleDrop, false);
+            row.addEventListener('dragend', handleDragEnd, false);
+        }
+
+        function handleDragStart(e) {
+            this.classList.add('dragging');
+            dragSrcEl = this;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+            e.dataTransfer.setData('text/index', this.dataset.index);
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault(); // Necesario para permitir el drop
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            this.style.borderTop = "2px solid var(--primary-orange)";
+        }
+
+        function handleDragLeave(e) {
+            this.style.borderTop = "";
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation(); // Stops the browser from redirecting.
+            }
+            if (dragSrcEl !== this) {
+                const oldIndex = parseInt(dragSrcEl.dataset.index);
+                const newIndex = parseInt(this.dataset.index);
+                const movedItem = initiatives.splice(oldIndex, 1)[0];
+                initiatives.splice(newIndex, 0, movedItem);
+                renderProjects();
+            }
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            const items = document.querySelectorAll('.project-row-info');
+            items.forEach(function (item) {
+                item.style.borderTop = "";
+            });
+        }
+
+        // --------------------------------------------------------
+
+        function addTableRow(project) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${project.name}</strong></td>
+                <td>${project.devWeeks} sem</td>
+                <td>Semana ${project.goLiveWeek}</td>
+                <td>${project.totalWeeks} sem</td>
+                <td>$${project.cost.toLocaleString()}</td>
+                <td><span class="status-badge ${project.active ? 'status-active' : 'status-inactive'}">${project.active ? 'Considerado' : 'No Incluido'}</span></td>
+            `;
+            elTableBody.appendChild(tr);
+        }
+
+        function updateTable() {
+            elTableBody.innerHTML = '';
+            initiatives.forEach(p => addTableRow(p));
+        }
+
+        function updateProjectState(id) {
+            const bar = document.getElementById(`bar-${id}`);
+            const project = initiatives.find(p => p.id === id);
+            
+            if (project.active) {
+                bar.classList.remove('disabled');
+            } else {
+                bar.classList.add('disabled');
+            }
+        }
+
+        function updateTotalCost() {
+            const total = initiatives
+                .filter(p => p.active)
+                .reduce((sum, p) => sum + p.cost, 0);
+            
+            elTotalCost.innerText = `USD ${total.toLocaleString()}`;
+        }
+
+        // Lógica de Arrastre de BARRA (Timeline - Mover en tiempo)
+        function addBarDragFunctionality(element, projectData) {
+            let isDragging = false;
+            let startX;
+            let startLeft;
+
+            element.addEventListener('mousedown', (e) => {
+                if (!projectData.active) return; // No mover si está inactivo
+                isDragging = true;
+                startX = e.clientX; // Posición X del mouse
+                startLeft = parseInt(element.style.left || 0);
+                
+                element.style.cursor = 'grabbing';
+                document.body.style.userSelect = 'none'; // Prevenir selección de texto
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+
+                const deltaX = e.clientX - startX;
+                let newLeft = startLeft + deltaX;
+
+                // Restricciones (Snap to grid 40px)
+                if (newLeft < 0) newLeft = 0;
+                const maxLeft = (CONFIG.totalWeeksToRender * CONFIG.weekWidth) - element.offsetWidth;
+                if (newLeft > maxLeft) newLeft = maxLeft;
+
+                element.style.left = `${newLeft}px`;
+            });
+
+            document.addEventListener('mouseup', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                element.style.cursor = 'grab';
+                document.body.style.userSelect = '';
+
+                // Snap
+                const currentLeft = parseInt(element.style.left || 0);
+                const exactWeekIndex = currentLeft / CONFIG.weekWidth;
+                const snappedWeekIndex = Math.round(exactWeekIndex);
+                
+                const snappedLeft = snappedWeekIndex * CONFIG.weekWidth;
+                
+                // Animar
+                element.style.transition = 'left 0.2s ease';
+                element.style.left = `${snappedLeft}px`;
+
+                // Actualizar datos
+                projectData.startWeek = snappedWeekIndex + 1; 
+                
+                // Actualizar label de Go Live porque la fecha ha cambiado
+                // Re-renderizamos todo el set para actualizar etiquetas
+                setTimeout(() => {
+                    renderProjects();
+                }, 200);
+            });
+        }
+
+        // Ejecutar
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
