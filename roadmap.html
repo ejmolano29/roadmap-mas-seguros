@@ -568,6 +568,94 @@
             background-color: #f1f5f9;
             color: #64748b;
         }
+
+        /* --- RESPONSIVE DESIGN --- */
+
+        /* Ajuste para pantallas grandes (13" y superiores) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+                /* Aprovechar más espacio */
+            }
+        }
+
+        /* Ajustes para tablet y móvil */
+        @media (max-width: 992px) {
+            .dashboard-panel {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .gantt-sidebar {
+                width: 200px;
+                /* Reducir ancho lateral */
+            }
+
+            .project-details span {
+                font-size: 0.7rem;
+                /* Texto más pequeño */
+            }
+        }
+
+        /* Ajustes Mobile (< 768px) */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 30px 0;
+            }
+
+            /* Dashboard en columna */
+            .dashboard-panel {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .dashboard-info,
+            .control-group,
+            .cost-display {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 10px;
+            }
+
+            .cost-display {
+                text-align: left;
+                margin-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 15px;
+            }
+
+            /* Gantt Compacto */
+            .gantt-sidebar {
+                width: 130px;
+                /* Muy estrecho */
+            }
+
+            .project-details h4 {
+                font-size: 0.8rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .project-details span {
+                display: none;
+                /* Ocultar detalles secundarios */
+            }
+
+            .sidebar-header {
+                font-size: 0.8rem;
+                padding: 0 10px;
+            }
+
+            .project-row-info {
+                padding: 0 5px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 
