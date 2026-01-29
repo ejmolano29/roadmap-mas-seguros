@@ -709,9 +709,11 @@
         // Key proporcionada por el usuario
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcXlsZW90bnRjZHZ1YW1ram56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTc0NTUsImV4cCI6MjA4NTI5MzQ1NX0.OEkArT_kVKB936objXhto0d6Ly_134YiZS_S6MRjufA';
 
+        let supabaseClient = null;
+
         try {
             if (window.supabase) {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
                 console.log("Supabase cliente inicializado");
                 updateDebug('supabase', 'Client Initialized');
             } else {
@@ -809,13 +811,13 @@
         // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
 
         async function loadRoadmapState() {
-            if (!supabase) {
+            if (!supabaseClient) {
                 updateDebug('data', 'Using Default (No Auth)');
                 return;
             }
             try {
                 updateDebug('data', 'Fetching...');
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('roadmap_config')
                     .select('content')
                     .eq('id', DB_ROW_ID)
@@ -853,7 +855,7 @@
         }
 
         async function saveRoadmapState() {
-            if (!supabase) return;
+            if (!supabaseClient) return;
 
             const stateToSave = {
                 initiatives: initiatives,
@@ -861,7 +863,7 @@
             };
 
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('roadmap_config')
                     .upsert({
                         id: DB_ROW_ID,
