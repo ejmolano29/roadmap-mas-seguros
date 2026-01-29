@@ -841,6 +841,34 @@
 
         // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
 
+        // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
+
+        // Simple Toast Notification
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.right = '20px';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '5px';
+            toast.style.color = 'white';
+            toast.style.fontWeight = 'bold';
+            toast.style.zIndex = '9999';
+            toast.style.transition = 'opacity 0.5s';
+
+            if (type === 'success') toast.style.backgroundColor = '#10b981'; // Green
+            else if (type === 'error') toast.style.backgroundColor = '#ef4444'; // Red
+            else toast.style.backgroundColor = '#3b82f6'; // Blue
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
         async function loadRoadmapState() {
             if (!supabaseClient) {
                 console.warn("Supabase no disponible, usando estado inicial");
@@ -854,7 +882,13 @@
                     .single();
 
                 if (error) {
-                    console.warn("Error Supabase al cargar:", error);
+                    // Si el error es que no existe la fila, no es crítico, se creará al guardar
+                    if (error.code === 'PGRST116') {
+                        console.log("No hay configuración guardada previa, se usará la default.");
+                    } else {
+                        console.warn("Error Supabase al cargar:", error);
+                        showToast("Error cargando datos", "error");
+                    }
                     return;
                 }
 
@@ -868,16 +902,17 @@
                         updateDateInputFromConfig();
                     }
                     console.log("Estado cargado de Supabase:", data.content);
-                } else {
-                    console.log("Datos vacíos en Supabase");
                 }
             } catch (err) {
                 console.error("Error loading state:", err);
+                showToast("Error de conexión", "error");
             }
         }
 
         async function saveRoadmapState() {
             if (!supabaseClient) return;
+
+            showToast("Guardando...", "info");
 
             const stateToSave = {
                 initiatives: initiatives,
@@ -895,8 +930,10 @@
 
                 if (error) throw error;
                 console.log("Estado guardado en Supabase");
+                showToast("Cambios guardados", "success");
             } catch (err) {
                 console.error("Error saving state:", err);
+                showToast("Error al guardar", "error");
             }
         }
 
