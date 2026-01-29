@@ -772,7 +772,8 @@
         </div>
     </footer>
 
-    <!-- Lógica de la Aplicación -->
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
     <!-- Debug Panel -->
@@ -781,15 +782,56 @@
     <script>
 
 
+        // Datos Globales
+        let initiatives = [];
+
+        // Configuración de visualización
+        const CONFIG = {
+            weekWidth: 40, // px por semana
+            totalWeeksToRender: 60,
+            startDate: new Date('2026-02-15T00:00:00')
+        };
+
+        // Elementos DOM
+        const elSidebar = document.getElementById('sidebarContent');
+        const elHeader = document.getElementById('timelineHeader');
+        const elBody = document.getElementById('timelineBody');
+        const elBgGrid = document.getElementById('bgGrid');
+        const elTotalCost = document.getElementById('totalCostDisplay');
+        const elTableBody = document.getElementById('detailsTableBody');
+        const elDateInput = document.getElementById('projectStartDate');
+
+        // Variables para Drag & Drop de filas (reordenar)
+        let dragSrcEl = null;
+
+        // --- CONFIGURACIÓN SUPABASE ---
+        const SUPABASE_URL = 'https://psqyleotntcdvuamkjnz.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcXlsZW90bnRjZHZ1YW1ram56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTc0NTUsImV4cCI6MjA4NTI5MzQ1NX0.OEkArT_kVKB936objXhto0d6Ly_134YiZS_S6MRjufA';
+
+        let supabaseClient = null;
+
+        try {
+            if (window.supabase) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                console.log("Supabase cliente inicializado");
+            } else {
+                console.error("Librería Supabase no cargada");
+            }
+        } catch (e) {
+            console.error("Error inicializando Supabase:", e);
+        }
+
+        const DB_ROW_ID = 1;
+
         // Inicialización
         async function init() {
             // Configurar Listeners
             elDateInput.addEventListener('change', async (e) => {
                 handleDateChange(false); // Update visual
-                // saveRoadmapState no longer persists to server
+                await saveRoadmapState(); // Save to DB
             });
 
-            // Cargar datos desde JSON local
+            // Intentar cargar estado remoto
             await loadRoadmapState();
 
             // Render inicial
@@ -797,38 +839,65 @@
             handleDateChange(true); // renderOnly
         }
 
-        // --- FUNCIONES DE CARGA (LOCAL JSON) ---
+        // --- FUNCIONES DE PERSISTENCIA (SUPABASE) ---
 
         async function loadRoadmapState() {
+            if (!supabaseClient) {
+                console.warn("Supabase no disponible, usando estado inicial");
+                return;
+            }
             try {
-                // Fetch de archivo local
-                const response = await fetch('roadmap_data.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
+                const { data, error } = await supabaseClient
+                    .from('roadmap_config')
+                    .select('content')
+                    .eq('id', DB_ROW_ID)
+                    .single();
 
-                if (data) {
+                if (error) {
+                    console.warn("Error Supabase al cargar:", error);
+                    return;
+                }
+
+                if (data && data.content) {
                     // Restaurar estado
-                    if (data.initiatives) {
-                        initiatives = data.initiatives;
+                    if (data.content.initiatives) {
+                        initiatives = data.content.initiatives;
                     }
-                    if (data.startDate) {
-                        CONFIG.startDate = new Date(data.startDate);
+                    if (data.content.startDate) {
+                        CONFIG.startDate = new Date(data.content.startDate);
                         updateDateInputFromConfig();
                     }
-                    console.log("Estado cargado desde roadmap_data.json");
+                    console.log("Estado cargado de Supabase:", data.content);
+                } else {
+                    console.log("Datos vacíos en Supabase");
                 }
             } catch (err) {
-                console.error("Error loading JSON state:", err);
-                // Si falla el JSON, usa los datos por defecto (fallback) definidos arriba
+                console.error("Error loading state:", err);
             }
         }
 
         async function saveRoadmapState() {
-            // En modo estático (JSON), no podemos guardar en el servidor.
-            // Aquí podríamos implementar LocalStorage si se deseara persistencia local temporal.
-            console.log("Modo estático: Los cambios no se guardan en el archivo JSON. Debes editar roadmap_data.json manualmente.");
+            if (!supabaseClient) return;
+
+            const stateToSave = {
+                initiatives: initiatives,
+                startDate: CONFIG.startDate.toISOString()
+            };
+
+            try {
+                const { error } = await supabaseClient
+                    .from('roadmap_config')
+                    .upsert({
+                        id: DB_ROW_ID,
+                        content: stateToSave,
+                        updated_at: new Date()
+                    });
+
+                if (error) throw error;
+                console.log("Estado guardado en Supabase");
+            } catch (err) {
+                console.error("Error saving state:", err);
+            }
         }
 
         function updateDateInputFromConfig() {
